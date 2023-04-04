@@ -53,5 +53,5 @@ jobs:
           git config --global user.name "gitops"
           git add .
           git commit -m "Deploying latest image"
-          git push
+          git pull && git push
        
