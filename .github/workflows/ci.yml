@@ -25,7 +25,7 @@ jobs:
       
       - name: Zip
         run: |
-          zip front-${{github.sha}}.zip
+          zip front-${{github.sha}}.zip ./*
       
       - name: upload to s3
         run: |
@@ -41,9 +41,9 @@ jobs:
       
       - name: awscli install and configure
         run: |
-          apt-get install -y zip
-          apt-get install -y awscli
-          aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}}
+          sudo apt-get install -y zip
+          sudo apt-get install -y awscli
+          sudo aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}}
           aws configure set aws_secret_access_key ${{secrets.SECRET_KEY}}
           aws configure set region ${{secrets.AWS_REGION}}
 
