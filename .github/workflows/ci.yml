@@ -16,9 +16,9 @@ jobs:
       
       - name: awscli install and configure
         run: |
-          apt update
-          apt install -y zip
-          apt install -y awscli
+          apt-get update
+          apt-get install -y zip
+          apt-get install -y awscli
           aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}}
           aws configure set aws_secret_access_key ${{secrets.SECRET_KEY}}
           aws configure set region ${{secrets.AWS_REGION}}
@@ -41,8 +41,8 @@ jobs:
       
       - name: awscli install and configure
         run: |
-          apt install -y zip
-          apt install -y awscli
+          apt-get install -y zip
+          apt-get install -y awscli
           aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}}
           aws configure set aws_secret_access_key ${{secrets.SECRET_KEY}}
           aws configure set region ${{secrets.AWS_REGION}}
