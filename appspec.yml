@@ -4,10 +4,10 @@ files:
   - source: /
     destination: /home/ubuntu/new-app
     overwrite: true
-hooks:
-  BeforeInstall:
-    - location: before-script.sh
-      runas: root
-  AfterInstall:
-    - location: after-script.sh
-      runas: root
+# hooks:
+#   BeforeInstall:
+#     - location: before-script.sh
+#       runas: root
+#   AfterInstall:
+#     - location: after-script.sh
+#       runas: root
