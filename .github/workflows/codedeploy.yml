@@ -31,27 +31,11 @@ jobs:
         run: |
           aws s3 cp front-${{github.sha}}.zip s3://${{secrets.S3BUCKET}}
 
-  deploy:
-    name: Run CodeDeploy
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: action/checkout@v3
-      
-      - name: awscli install and configure
-        run: |
-          sudo apt-get install -y zip
-          sudo apt-get install -y awscli
-          sudo aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}}
-          aws configure set aws_secret_access_key ${{secrets.SECRET_KEY}}
-          aws configure set region ${{secrets.AWS_REGION}}
-
       - name: Deploy in server
         run: |
           aws deploy create-deployment \
           --application-name test_app \ 
-          --deployment-config-name test_deploy \ 
-          --deployment-group-name CodeDeployDefault.AllAtOnce \ 
+          --deployment-config-name CodeDeployDefault.AllAtOnce \ 
+          --deployment-group-name test_deploy \ 
           --s3-location bucket=${{secrets.S3BUCKET}},key=front-${{github.sha}}.zip,bundleType=zip
       
